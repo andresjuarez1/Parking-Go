@@ -26,7 +26,7 @@ func NewCar(p *Parking, s *canvas.Image) *Vehicle {
 func GenerateVehicle(n int, parking *Parking) {
 	parking.Space <- true
 	for i := 0; i < n; i++ {
-		VehicleImg := canvas.NewImageFromURI(storage.NewFileURI("./assets/vehicle.png"))
+		VehicleImg := canvas.NewImageFromURI(storage.NewFileURI("./assets/rayo.png"))
 		VehicleImg.Resize(fyne.NewSize(50, 100))
 			x := rand.Intn(700-100+1) + 1
 		VehicleImg.Move(fyne.NewPos(float32(x), 500))

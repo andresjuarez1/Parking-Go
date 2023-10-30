@@ -2,10 +2,12 @@ package screen
 
 import (
 	"park/models"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
-	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/storage"
+
+	"fyne.io/fyne/v2/container"
 )
 
 type GameScene struct {
@@ -14,15 +16,17 @@ type GameScene struct {
 }
 
 func (s *GameScene) Render() {
-	backgroundImage := canvas.NewImageFromURI(storage.NewFileURI("./assets/parking.png"))
+	backgroundImage := canvas.NewImageFromURI(storage.NewFileURI("./assets/park2.png"))
+
 	backgroundImage.Resize(fyne.NewSize(800, 600))
 	backgroundImage.Move(fyne.NewPos(0, 0))
 
 	s.content = container.NewWithoutLayout(
-		backgroundImage, // Fondo
+		backgroundImage,
 	)
 	s.window.SetContent(s.content)
 	s.StartGame()
+
 }
 
 func NewScene(window fyne.Window) *GameScene {
