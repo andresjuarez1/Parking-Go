@@ -6,15 +6,15 @@ import (
 	"fyne.io/fyne/v2/canvas"
 )
 
-type Parking struct {
+type Park struct {
 	Space       chan bool
-	DrawVehicle chan *canvas.Image
+	DrawCar chan *canvas.Image
 	mutex       sync.Mutex
 }
 
-func NewPark(nS int) *Parking {
-	return &Parking{
+func NewPark(nS int) *Park {
+	return &Park{
 		Space:       make(chan bool, nS+1),
-		DrawVehicle: make(chan *canvas.Image, 1),
+		DrawCar: make(chan *canvas.Image, 1),
 	}
 }
