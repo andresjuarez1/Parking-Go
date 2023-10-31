@@ -16,7 +16,7 @@ type GameScene struct {
 }
 
 func (s *GameScene) Render() {
-	backgroundImage := canvas.NewImageFromURI(storage.NewFileURI("./assets/park2.png"))
+	backgroundImage := canvas.NewImageFromURI(storage.NewFileURI("./assets/park.png"))
 
 	backgroundImage.Resize(fyne.NewSize(800, 600))
 	backgroundImage.Move(fyne.NewPos(0, 0))
@@ -48,4 +48,3 @@ func (s *GameScene) StartGame() {
 	go models.GenerateCar(100, e)
 	go s.DrawCars(e)
 }
-
