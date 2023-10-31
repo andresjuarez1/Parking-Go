@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"time"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/storage"
@@ -12,14 +13,14 @@ import (
 type Car struct {
 	park *Park
 
-	I       int
-	skin    *canvas.Image
+	I    int
+	skin *canvas.Image
 }
 
 func NewCar(p *Park, s *canvas.Image) *Car {
 	return &Car{
 		park: p,
-		skin:    s,
+		skin: s,
 	}
 }
 
@@ -28,7 +29,7 @@ func GenerateCar(n int, park *Park) {
 	for i := 0; i < n; i++ {
 		CarImg := canvas.NewImageFromURI(storage.NewFileURI("./assets/rayo.png"))
 		CarImg.Resize(fyne.NewSize(50, 100))
-			x := rand.Intn(700-100+1) + 1
+		x := rand.Intn(700-100+1) + 1
 		CarImg.Move(fyne.NewPos(float32(x), 500))
 
 		NewCar := NewCar(park, CarImg)
@@ -37,8 +38,10 @@ func GenerateCar(n int, park *Park) {
 		park.DrawCar <- CarImg
 		go NewCar.RunCar()
 		Wait := rand.Intn(700-100+1) + 1
-			time.Sleep(time.Duration(Wait) * time.Millisecond)
+		time.Sleep(time.Duration(Wait) * time.Millisecond)
 	}
+
+	
 }
 
 func (v *Car) RunCar() {
@@ -56,8 +59,10 @@ func (v *Car) RunCar() {
 
 	v.park.mutex.Lock()
 	<-v.park.Space
-	v.skin.Move(fyne.NewPos(0, 0))
+
+	v.skin.Move(fyne.NewPos(-100, -100))
 	fmt.Println("Carro ", v.I, " Sale")
 	time.Sleep(200 * time.Millisecond)
 	v.park.mutex.Unlock()
 }
+

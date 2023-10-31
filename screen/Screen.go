@@ -35,8 +35,6 @@ func NewScene(window fyne.Window) *GameScene {
 	return scene
 }
 
-
-
 func (s *GameScene) DrawCars(e *models.Park) {
 	for {
 		imagen := <-e.DrawCar
@@ -45,9 +43,9 @@ func (s *GameScene) DrawCars(e *models.Park) {
 	}
 }
 
-
 func (s *GameScene) StartGame() {
 	e := models.NewPark(20)
 	go models.GenerateCar(100, e)
 	go s.DrawCars(e)
 }
+
