@@ -38,7 +38,7 @@ func GenerateCar(n int, park *Park) {
 		time.Sleep(time.Millisecond * 200)
 
 		go NewCar.RunCar()
-		Wait := rand.Intn(700-100+1) + 1
+		Wait := rand.Intn(100-50+1) + 50
 		time.Sleep(time.Duration(Wait) * time.Millisecond)
 	}
 }
@@ -56,7 +56,7 @@ func (v *Car) RunCar() {
 		}
 	}
 
-	fmt.Println("Carro ", v.I, " Entra")
+	fmt.Println("Carro ", v.I, " entra al estacionamiento")
 	time.Sleep(300 * time.Millisecond)
 	v.park.mutex.Unlock()
 
@@ -67,7 +67,7 @@ func (v *Car) RunCar() {
 	<-v.park.Space
 	v.park.ParkSpaces[v.ParkSpace].occupied = false
 	v.skin.Move(fyne.NewPos(4600, 5000))
-	fmt.Println("Carro ", v.I, " Sale")
+	fmt.Println("Carro ", v.I, " sale del estacionamiento")
 	time.Sleep(200 * time.Millisecond)
 	v.park.mutex.Unlock()
 }
